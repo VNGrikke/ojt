@@ -25,20 +25,21 @@ function logOut() {
     change();
 }
 function render() {
-    let products = [];
-    for (let index = 0; index < images.length; index++) {
+    let products;
+    for (let i = 0; i < images.length; i++) {
+        console.log(images[i]);
        products += `
                     <a href="">
                         <div class="product">
-                        <div class="productImg"><img src="git remote add Origin https://github.com/VNGrikke/ojt.git${images[i].src}"></div>
+                        <div class="productImg"><img src="${images[i].src}"></div>
                         <div class="productName">${images[i].name}</div>
-                        <div class="price">${images[i].price}</div>
+                        <div class="price">${images[i].price}.000VNĐ</div>
                         <button>Mua</button>
                     </div>
                     </a>
        `
     }
-    document.getElementById("products").innerText = products;
+    document.getElementById("products").innerHTML = products;
 }
 render();
 

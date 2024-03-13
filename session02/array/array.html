@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Array: mảng thuộc kiểu dữ liệu phức tạp(tham chiếu-reference)
+        I.Cách khai báo
+        1. let arr = [];
+        2. let arr = new Array();
+        Các phần tử trong mảng ngăn cách với nhau bởi dấu phẩy
+        mảng có thể chứa nhiều kiểu dữu liệu khác nhau
+        kiểm tra độ dài cảu mảng: tên mảng.length
+        
+        Các cách duyệt mảng
+        1.for
+        2.for-in
+        3.for-of
+
+        ***********************
+        CRUD với mảng
+        C: Create
+        +Unshift: thêm vao đầu
+        +push: thêm vào cuối
+        +splice: thêm vào vị trí bất kì
+
+        R: Read
+        1. for
+        2.for-in
+        3.for-of
+
+        U: Update
+        splice(vị trí, số lượng phần tử xóa,phần tử thay thế)
+        tên mảng[vị trí cần thay đổi] = phần tử thay thế
+        
+        D: Delete
+        - pop():xóa phần tử cuối
+        - shift(): xóa phân tử đầu
+        - dùng splice
+
+        III. các phương thúc lam việc với mảng
+        1. pop(): xóa phần tử ở cuối
+        2. push(): thêm phần tử vào cuối
+        3. shift(): xóa phần tử ở đầu
+        4. unshift(): thêm phân tử vào đầu
+        5. join() : gộp các phần tử trong mảng thành chuỗi( cách sử dụng: tên mảng.join(""))
+        6. concat() : gộp mảng
+        7. split() : chuyển tư chuỗi thành mảng( cách sử dụng tên mảng.)
+        8. splice() : thêm, sửa, xóa, update
+        9. slice() : cắt sao chép
+        10. map(): Phương thức map() gọi một hàm callback trên mọi phần tử của mảng và trả về một mảng mới chứa kết quả
+        11. filter(): hàm filter gọi 1 hàm callback trên mọi phần tử và tạo ra 1 mảng chứa tất cả các phần tử thỏa mãn điều kiện 
+        12. forEach(): là một phương thức lặp qua tất cả phần tử trong mảng một cách hiệu quả (cách sử dụng: tên mảng.forEach(function(value,index,arr)) 
+        13. redues():
+        14. find():được sử dụng để tìm phần tử đầu tiên trong mảng thỏa mãn điều kiện, sẽ trả về giá trị của phần tử đó,
+         Nếu không có phần tử nào thỏa mãn điều kiện, find() sẽ trả về undefined.
+        15. findIndex(): trả về vị trí của phần tử thỏa mãn điêu kiện nếu không có trả về -1
+        16. startWitch(): được sử dụng để kiểm tra xem một chuỗi có bắt đầu bằng một chuỗi khác đã cho hay không.
+        Phương thức này trả về giá trị boolean, true nếu chuỗi bắt đầu bằng chuỗi đã cho và false nếu không.
+        17. endWitch():  được sử dụng để kiểm tra xem một chuỗi có kết thúc bằng một chuỗi đã cho hay không.
+         Phương thức này trả về true nếu chuỗi kết thúc bằng chuỗi đã cho và false nếu không.
+        18. charAt(): sử dụng để trả về ký tự tại một vị trí cụ thể trong một chuỗi
+        19. indexOf():  trong JavaScript được sử dụng để tìm chỉ mục (index) đầu tiên của một chuỗi con trong một chuỗi.
+         Nếu chuỗi con không được tìm thấy, phương thức sẽ trả về -1.
+        20. include():  được sử dụng để kiểm tra xem một chuỗi có chứa một chuỗi con cụ thể hay không.
+         Phương thức này trả về giá trị boolean: true nếu chuỗi chứa chuỗi con và false nếu không.
+        21. every(): trong JavaScript được sử dụng để kiểm tra xem tất cả các phần tử trong một mảng có thỏa mãn một điều kiện nào đó hay không.
+         Phương thức này trả về true nếu tất cả các phần tử thỏa mãn điều kiện, và false nếu ít nhất một phần tử không thỏa mãn điều kiện.
+        22. fill(): trong JavaScript được sử dụng để thay thế tất cả các phần tử trong một mảng bằng một giá trị cụ thể.
+        23. copyWith():  là một phương thức trong JavaScript được sử dụng để sao chép một phần của mảng và dán nó vào vị trí khác trong cùng mảng mà không thay đổi chiều dài của mảng.
+        24. reverse(): đảo ngược lại vị trí của các phần tử trong mảng
+        25. sort(a,b): sắp xếp các phàn từ trong mảng theo thứ tự tăng (return a-b),giảm(return b-a),
+    
+    -->
+    <input id="find" type="text" placeholder="mời nhập tên sản phẩm muốn mua">
+    <button id="buy">mua</button>
+     <script>
+        // let arr = ['1','3','5'];
+        // arr.splice(2,1,'99');
+        // console.log(arr);
+        // for (let i = 0; i < arr.length; i++) {
+        //     console.log(arr[i]);            
+        // }
+        // for (let key in arr) {
+        //     console.log(arr[key]);
+        // }
+        // for (const iterator of arr) {
+        //     console.log(iterator);
+        // }
+
+        let text = "cố gắng học lập trình";
+        let result = text.split(" ");
+        console.log(result);
+        let products = [
+            {
+                id:1,
+                name: 'iphone5',
+                price:6000
+            },
+            {
+                id:2,
+                name: 'iphone3',
+                price:9000,
+            },
+            {
+                id:3,
+                name: 'iphone15',
+                price:20000,
+            },
+        ]
+
+        let cart=[];
+        let btn = document.getElementById("buy");
+        let findProduct;
+        btn.addEventListener("click",function() {
+            findProduct = document.getElementById("find").value;
+            let check = false;
+            let prFind;
+            for (let i in products) {
+                if (findProduct === products[i].name) {
+                        check = true;
+                        prFind = products[i];
+                        break;
+                    };  
+            };
+            if (check) {
+                let check2 = false;
+                for (let z in cart) {
+                    if (findProduct === cart[z].name) {
+                        check2 = true;
+                        break;
+                    };
+                };
+                if (check2) {
+                    for (let index in cart) {
+                        if (findProduct === cart[index].name) {
+                            cart[index].quantity++;
+                        };
+                    };
+                    
+                }else{
+                    prFind.quantity = 1; 
+                    cart.push(prFind);
+                    
+                };
+            };
+            
+            
+            console.log(cart);
+        });
+        
+     </script>
+</body>
+</html>

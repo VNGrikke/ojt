@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.logo img{
+    height: 35px;
+    width: 35px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+.user{
+    display: flex;
+    gap: 20px;
+}

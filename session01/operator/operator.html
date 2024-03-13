@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÔN TẬP</title>
+</head>
+<body>
+    
+    <!-- 
+        OPERATOR
+        1. Toán tửu số học
+        +,-,*,/,%,**
+        2. Toán tử gán
+        =; +=; -=; *=; /=.
+        3. Toán tử so sánh
+        ==; ===; != ; !==; >; <; >=; <=
+        phân biệt
+        == & ===
+        == so sánh giá trị
+        === so sánh giá trị và kiểu dữ liệu
+        4. Toán tử tăng giảm
+        ++a; gọi là tiền tố nên sẽ cộng trước
+        a++; gọi là hậu tố nên sẽ cộng sau
+        --a;
+        a--;
+        5. Toán tử logic
+        &&, ||, !
+        falsy: 0,NaN,null,undefined,false,"",'',``
+        trusthy: không phải là falsy.
+
+        || : tính từ trái qua phải lấy trusthy đầu tiên nếu không có lấy thằng cuối cùng.
+
+        && : tính từ trái qua phải lấy falsy đầu tiên nếu không có lấy thằng cuối cùng
+
+        6. Toán tử 3 ngôi ? :
+        7. nullish: ??
+        - tính từ trái qua phải nếu là null hoặc underfined thì lấy cái ở cuối
+        5 ?? 7 ==> 5
+    -->
+    <script>
+        // let result = "5" + 5 ;//55
+        //             //  2 + "5";//25
+        //             // "5" - 2 ;//3
+        // console.log(result);
+
+        // let a = 5;
+        // let b = "5";
+        // console.log(a == b);//true
+        // console.log(a === b);//false
+        // console.log(a != b);//false
+        // console.log(a !== b);//true
+        
+        // let hiep = 5;
+        // console.log(hiep++);//5
+        // console.log(++hiep);//7
+        
+        // // let vinh1 = 4;
+        // // vinh1++;
+        // // console.log("vinh: "+vinh1);
+
+        // // let vinh2 = 6;
+        // // ++vinh2;
+        // // console.log("vinh: "+vinh2);
+        
+        // let x = 1;
+        // let kq = x++ + ++x + x + ++x;//11
+        // console.log(kq);
+
+        // let result = JSON.parse(localStorage.getItem("key"))||[];// để tránh lỗi chương trình
+
+        // let a = 5;
+        // let result = a > 4 ? `${a} lớn hơn 4` : `${a} nhỏ hơn 4`;
+        // console.log(result);
+
+        let result = null ?? 6;
+        console.log(result);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        localStorage
+        -cho phép lưu trữ dũ liệu trên web
+        -dữ liệu lưu vào localstorage sẽ không bị mất đi
+        -dung lượng tầm 5MB
+        -lưu dữ liệu dưới dạng key và value
+        -cho phép lưu dữ liệu dạng JSON(là 1 định dạng dữ liệu)
+        tức là khi lưu dữu liệu array và ofject thì phải chuyển sang định dạng JSON
+        JSON.stringify
+        khi lấy về vẫn lấy về kiểu định dạng JSON nên khi mình lấy vê mình phải parse ra dạng array và object
+        bình thường để dùng
+        các cú pháp hay dùng
+        lưu: set
+        localStorage.setItem("tên key", giá trị);
+        lấy về: get
+        localStorage.getItem("tên key");
+        xóa 1 key
+        localStogare.removeItem("Tên key");
+        xóa hết
+        localStorage.clear;
+
+     -->
+    <script>
+        // let numbers = [1,3,5];
+        // localStorage.setItem(JSON.stringify("numbers",numbers));
+        // let x = JSON.parse(localStorage.getItem("numbers"))
+        let std = [
+            {
+                id:1,
+                name:"vũ"
+
+            },
+            {
+                id:2,
+                name:"nam"
+
+            }
+        ]
+        // localStorage.setItem("std",JSON.stringify(std));
+        let x = JSON.parse(localStorage.getItem("std"));
+        console.log(x);
+    </script>
+</body>
+</html>

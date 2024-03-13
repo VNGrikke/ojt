@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Function: Hàm
+        I. gồm các câu lệnh, thực hiện 1 chức năng duy nhất
+        Q/A: các loại hàm mà các em biết?
+        1.declararion
+        function binh thường
+        2.expression function
+        3.arrow-function
+        4.IIFE(immediately invoke function expression)
+        thường được làm thư viện vì nó có khả năng đóng gói không ảnh hưởng đến đặt tên
+        II. các thực thi hàm, return trong hàm
+        III. tham số, đối số trong hàm
+        IV. đệ quy
+        V. Call-back function
+
+     -->
+     <script>
+        //khai báo 1 hàm declararion
+        sayHello();
+            function sayHello() {
+                console.log('helo');
+            }
+        let result = function(){
+            console.log('expression function');
+        }
+        result();
+        // hàm thực thi khi gọi hàm
+        let arrow = ()=> {console.log("arrow function");}
+        
+        arrow();
+        //IIFE
+        (function a1(){
+            console.log('a1');
+        })();
+        (function a1(){
+            console.log('a11');
+        })();
+        
+
+
+        
+     </script>
+</body>
+</html>

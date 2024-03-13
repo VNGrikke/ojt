@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            margin-top: 10%;
+            display: flex;
+            position: relative;
+            justify-content: space-around;
+        }
+        table{
+            text-align: center;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+        }
+        .main{
+            text-align: center;
+            border: 1px solid black;
+            height: 400px;
+            width: 400px;
+        }
+        .infor{
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+            justify-content: space-around;
+        }
+        .attributes{
+            display: flex;
+            flex-direction: column;
+        }
+        .inpInfor{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .main button{
+            padding: 4px 64px;
+        }
+        .listStudents{
+            border: 1px solid black;
+            height: auto;
+            max-width: 900px;
+            padding: 5px;
+        }
+        
+        table, th, td {
+            border:1px solid black;
+        }
+        table tr th,td{
+            width: auto;
+            padding: 0 10px;
+        }
+        table tr td button{
+            padding: 0 5px;
+        }
+        .edit-table{
+            /* display: none; */
+            background-color: white;
+            /* position: absolute; */
+            text-align: center;
+            border: 1px solid black;
+            height: 400px;
+            width: 400px;
+        }
+        .re-infor{
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+            justify-content: space-around;
+        }
+        .re-inpInfor{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- lưu thông tin  -->
+    <div class="main">
+        <form id="inpTable" action="" method="post">
+            <h1>Thông tin học viện</h1>
+            <div class="infor">
+                <p class="attributes">
+                    <label for="name">Họ và tên</label>
+                    <label for="email">Email</label>
+                    <label for="phoneNumber">Số điện thoại</label>
+                    <label for="address">Quê quán</label>
+                    <label for="sex">Giới tính</label>
+                </p>
+                <p class="inpInfor">
+                    <input type="text" name="name" id="inpName" placeholder="vui lòng nhập tên">
+                    <input type="email" name="email" id="inpEmail" placeholder="vui lòng nhập eamil">
+                    <input type="tel" pattern="[0-9]{10}" name="phoneNumber" id="inpPhNumber" placeholder="vui lòng nhập số điện thoại">
+                    <input type="text" name="" id="inpAddress" placeholder="vui lòng nhập quê quán">
+                    <span>
+                        <input class="gender" type="radio" name="sex" value="Nam" id="male" checked> <label for="male">Nam</label>
+                        <input class="gender" type="radio" name="sex" value="Nữ" id="female"> <label for="female">Nữ</label>
+                    </span>
+                </p>
+            </div>
+        </form>    
+        <button id="btn" onclick="saveInfor()">Lưu lại</button>
+    </div>
+<!-- danh sách học viên -->
+    <div action="" method="get"><div class="listStudents">
+            <h1 class="head">Danh sách học tập</h1>
+            <div class="searchBox">
+                <label for="search">Tìm kiếm tên học viên</label>
+                <input type="text" name="inpSearch" id="inpSearch">
+                <button onclick="findName()" >Tìm kiế </button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th >stt</th>
+                        <th >Họ tên</th>
+                        <th >Email</th>
+                        <th >Điện thoại</th>
+                        <th >Địa chỉ</th>
+                        <th >Gender</th>
+                        <th >Hành động</th>
+                        <th ><button onclick="sapXep()">sắp xếp(alpha b)</button></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+    </div>
+<!-- sửa thông tin học viên -->
+    
+    <script>
+        let action = "create";
+        let studensList = JSON.parse(localStorage.getItem("studensList"))||[];
+        function saveInfor() {
+            let nameStd = document.getElementById("inpName").value;
+            let emailStd = document.getElementById("inpEmail").value;
+            let phoneStd = document.getElementById("inpPhNumber").value;
+            let addressStd = document.getElementById("inpAddress").value;
+            let genderStd = document.querySelector("input[type=radio]:checked").value;
+            let inforStd = {
+                id: Math.floor(Math.random() * 1000000000), 
+                name: `${nameStd}`, 
+                email: `${emailStd}`,
+                phoneNumber: `${phoneStd}`, 
+                address: `${addressStd}`,
+                gender: `${genderStd}`
+            }
+            if(action=="create"){
+                //Thuc hien them moi               
+                
+                studensList.push(inforStd);
+                localStorage.setItem("studensList", JSON.stringify(studensList));
+                refresh();
+            }else{
+                //thuc hien cap nhat                
+                for (let i = 0; i < studensList.length; i++) {
+                    if (action == studensList[i].id) {
+                        studensList.splice(i,1, {...inforStd, id: action });
+                        localStorage.setItem("studensList", JSON.stringify(studensList));
+                        document.getElementById("btn").innerText = "Lưu lại";
+                        action = "create";
+                        render();
+                        refresh();
+                        return;
+                    }
+                    
+                }
+            }
+           
+            render();
+        }
+        function refresh() {
+            document.getElementById("inpName").value = "";
+            document.getElementById("inpEmail").value = "";
+            document.getElementById("inpPhNumber").value = "";
+            document.getElementById("inpAddress").value = "";
+        }
+       
+        function render() {
+            let text = "";
+            for (let i = 0; i < studensList.length; i++) {
+                text += 
+                `
+                    <tr>
+                        <td>${i+1}</td>
+                        <td>${studensList[i].name}</td>
+                        <td>${studensList[i].email}</td>
+                        <td>${studensList[i].phoneNumber}</td>
+                        <td>${studensList[i].address}</td>
+                        <td>${studensList[i].gender}</td>
+                        <td>
+                            <button onclick = "edit(${studensList[i].id})" >edit</button>
+                            <button onclick = "del(${studensList[i].id})" >del</button>
+                        </td>
+                    </tr>
+                `
+            }
+            document.getElementById("tbody").innerHTML = text;
+        }
+        render();
+        function del(idUser) {
+            let confirmDel = confirm("bạn có muốn xóa hay không");
+            if (!confirmDel) {
+                return;
+            }else{ 
+                for (let i = 0; i < studensList.length; i++) {
+                    if (idUser == studensList[i].id) {
+                        studensList.splice(i,1);
+                        localStorage.setItem("studensList", JSON.stringify(studensList));
+                        render();
+                        break;
+                    }
+                }
+            }
+        }
+        function edit(idUser) {
+            action = idUser;
+            for (let i = 0; i < studensList.length; i++) {
+                    if (idUser == studensList[i].id) {
+                        document.getElementById("inpName").value = studensList[i].name;
+                        document.getElementById("inpEmail").value = studensList[i].email;
+                        document.getElementById("inpPhNumber").value = studensList[i].phoneNumber;
+                        document.getElementById("inpAddress").value = studensList[i].address;
+                        if (studensList[i].gender == "Nam") {
+                            document.getElementById("male").checked = true;
+                        } else {
+                           
+                            document.getElementById("female").checked = true;
+                        }
+                        document.getElementById("btn").innerText = "Edit";
+                        break;
+                    }
+                }
+            }
+        function findName() {
+            let fName = document.getElementById("inpSearch").value;
+            let data = [];
+            console.log(fName);
+            if (fName == null) {
+                render();
+            }else{
+                
+                for (let i = 0; i < studensList.length; i++) {
+                    if (studensList[i].name.includes(fName)==true) {
+                        data.push(studensList[i]);
+                    }
+                }
+                output(data);                
+            }
+        }
+        function sapXep() {
+            let s = studensList.sort(function(a,b){
+                    let sv1 = a.name.toLowerCase();
+                    let sv2 = b.name.toLowerCase();
+                    return sv1 === sv2 ?  0 : sv1 > sv2 ? 1 : -1;
+                })
+                console.log(s);
+            output(s);
+            
+        }
+        function output(arr) {
+            let text = "";
+            for (let i = 0; i < arr.length; i++) {
+                text += 
+                    `
+                        <tr>
+                            <td>${i+1}</td>
+                            <td>${arr[i].name}</td>
+                            <td>${arr[i].email}</td>
+                            <td>${arr[i].phoneNumber}</td>
+                            <td>${arr[i].address}</td>
+                            <td>${arr[i].gender}</td>
+                            <td>
+                                <button onclick = "edit(${arr[i].id})" >edit</button>
+                                <button onclick = "del(${arr[i].id})" >del</button>
+                            </td>
+                        </tr>
+                    `
+            }
+            document.getElementById("tbody").innerHTML = text;
+        }
+    // bài tập về nhà: lưu xong giá trị các ô nhập sẽ trở về rỗng
+    // khi xóa sẽ hiện thông báo bạn có muốn xóa hay không
+    </script>
+</body>
+</html>

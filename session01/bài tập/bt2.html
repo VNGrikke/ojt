@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = prompt("nhập vào 5 số nguyên");
+        let a1 = a.split('');
+        for (let i = 0; i < a1.length - 1; i++) {
+            for (let j = 0; j < a1.length - i - 1; j++) {
+                if (a1[j] < a1[j + 1]) {
+                    var temp = a1[j];
+                    a1[j] = a1[j + 1];
+                    a1[j + 1] = temp;
+                }
+            }
+        }
+        console.log("số lớn nhất", a1[0]);
+        console.log(a1);
+    </script>
+</body>
+</html>

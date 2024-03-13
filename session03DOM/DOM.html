@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        .dom{
+            color: red;
+        }
+        .title{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="dom" >DOM</h1>
+    <!-- thay đổi nội dung DOM -> Học lập trình -->
+    <button onclick="changeColor()"> click</button>
+    <p class="heading">Lớp A</p>
+    <p class="heading">Lớp B</p>
+
+    <!-- 
+        DOM: document object model
+        mô hình tài liệu dạng đối tượng
+        Q/A: Dom sinh ra khi nào?
+        khi trang web được tải thì trình duyệt sẽ tạo ra một mô hình cây DOM
+        
+        Các thành phần trong DOM:
+        1. Element
+         các cách để lấy element:
+           I. lấy theo ID
+           -> trả về element có chứa id đó
+           II. lấy theo class
+           -> trả vê HTML colection (theo dạng mảng)
+
+        2. Artribute: thuộc tính
+         - classList: lấy ra danh sách class cảu element
+         + cung cấp các phương thức
+           add(): thêm class
+           remove(): xóa class
+           contain(): kiểm tra xem có tồn tại class hay không
+           toogle(): như công tắc kiểm tra xem có class thì xóa đi không có thì thêm vào
+        3. Text(nội dung)
+           - innerHTML
+           - innerText
+           - textContent
+
+    -->
+    <script>
+        
+        let elemByClass = document.getElementsByClassName("heading");
+        console.log(elemByClass);
+        console.log(elemByClass[0]);
+        
+        let elemByTagName = document.getElementsByTagName("p");
+        console.log(elemByTagName);
+        console.log(elemByTagName[1]);
+        
+        let elemBySelector = document.querySelector(".heading");
+        console.log(elemBySelector);
+        
+        let elemBySelectorAll = document.querySelectorAll(".heading");
+        console.log(elemBySelectorAll);
+        console.log(elemBySelectorAll[0]);
+        let count = 0;
+        function changeColor() {
+            let elem = document.getElementById("dom");
+            // elem.classList.toggle("dom");
+            // elem.setAttribute("class","title");
+            count++;
+            if (count %2 !=0) {
+                elem.innerText = "Hãy học lập trình";
+            }else {
+                elem.innerText = "DOM";
+            }
+            // if (elem.innerText=="DOM") {
+            //     elem.innerText = "Hãy học lập trình";
+            // }else if(elem.innerText == "Hãy học lập trình") {
+            //     elem.innerText = "DOM";
+            // }
+        }
+        
+    </script>
+</body>
+</html>

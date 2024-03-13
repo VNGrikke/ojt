@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Object: Đối tượng
+        I. Cách taọ đối tượng
+          1. let obj = {
+            name:'hoa',
+            ...
+          }
+          2. let newObj = new OBject();
+          3. dùng hàm tạo constructor
+          4. dùng class
+        II. thuộc kiểu dữ liệu phức tạp
+          - Một object sẽ gồm các cặp key(thuộc tính-property) và value
+          -CRUD với object:
+           + C: Create
+           đối tượng.tên thuộc tính = giá trị thuộc tính;
+
+
+     -->
+     <script>
+        let stds = {
+            name : "hoa",
+            address: "HN",
+            id: 1
+        }
+        for (const key in stds) {
+            console.log("key", stds.key);// undefined vì nó sẽ ngầm hiểu là tìm thuộc tính key và trong mảng không có nên nó sẽ ghi undefined
+            console.log("key", stds[key]);
+        }
+        // stds.address = "hn";
+        console.log(stds);
+        console.log("sau khi thay đổi");
+        stds.name = "hồng";
+        console.log(stds);
+        delete stds.address;
+        console.log(stds);
+
+        // let obj1 = {
+        //     name: "hoa"
+        // }
+        // let obj2 = obj1;
+        //     obj1.name = "hồng";// obj2 sẽ thay đổi theo obj1
+        // console.log(obj2.name);
+
+        // kiểu dữ liệu tham chiếu - áp dụng với kiểu dữ liệu phức tạp
+        // toán tử spread(shallow colone - clone không hết - nếu thay đổi 1 phần tử có giá trị phức tạp 
+        // thì biến clone theo nó sẽ thay đổi theo) 
+        // deep clone(JSON.parse(JSON.stringify())) về tìm hiểu
+        let obj1 = {
+            name: " hồng",
+            address: {city:'hn'}
+        }
+        // let obj2 = {...obj1};
+        let obj2 = JSON.parse(JSON.stringify(obj1));
+        console.log("sau khi thay");
+        obj1.name = "minh thư";
+        obj1.address.city = "HCM";
+        console.log(obj1);
+        console.log(obj2);
+</script>
+</body>
+</html>
